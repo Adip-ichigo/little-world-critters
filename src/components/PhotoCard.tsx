@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Play, ImageIcon } from "lucide-react";
 import type { MediaSlot } from "@/data/animals";
 
@@ -11,6 +11,13 @@ type Props = {
 
 export function PhotoCard({ slot, animalName, delay = 0, onOpen }: Props) {
   const [missing, setMissing] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
+
+  // Images that already failed before hydration won't fire onError again.
+  useEffect(() => {
+    const img = imgRef.current;
+    if (img?.complete && img.naturalWidth === 0) setMissing(true);
+  }, []);
 
   return (
     <button
@@ -30,6 +37,7 @@ export function PhotoCard({ slot, animalName, delay = 0, onOpen }: Props) {
         </div>
       ) : (
         <img
+          ref={imgRef}
           src={slot.image}
           alt={`${animalName} ${slot.index}`}
           loading="lazy"
