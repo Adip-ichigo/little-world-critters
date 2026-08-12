@@ -79,6 +79,12 @@ export function VideoModal({ slot, animalName, onClose }: Props) {
         <p className="px-3 py-3 text-center text-sm text-muted-foreground">
           {animalName} {slot.index}
         </p>
+
+        {slot.message && (
+          <p className="animate-fade-in-up px-4 pb-5 text-center text-base font-medium leading-relaxed text-foreground sm:px-6 sm:pb-6 sm:text-lg">
+            {slot.message}
+          </p>
+        )}
       </div>
     </div>
   );
