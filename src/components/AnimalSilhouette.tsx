@@ -26,7 +26,7 @@ const paths: Record<string, string> = {
 };
 
 export function AnimalSilhouette({ slug, className }: Props) {
-  const d = paths[slug] ?? paths.rabbit;
+  const d = paths[slug] ?? paths["rabbit"];
   return (
     <svg viewBox="0 0 60 60" className={className} aria-hidden="true" fill="currentColor">
       <path d={d} />
