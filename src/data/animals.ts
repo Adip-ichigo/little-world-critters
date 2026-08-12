@@ -29,6 +29,8 @@ export type MediaSlot = {
   video: string;
   /** e.g. "Rabbit 2" */
   label: string;
+  /** Short warm message shown under the video */
+  message: string;
 };
 
 export type Animal = {
